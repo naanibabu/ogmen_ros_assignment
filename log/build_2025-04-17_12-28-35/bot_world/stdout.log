@@ -1,0 +1,27 @@
+-- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Found ament_lint_auto: 0.12.12 (/opt/ros/humble/share/ament_lint_auto/cmake)
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/nani/nanibabu_ws/build/bot_world
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/bot_world/worlds/test_world2.sdf
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/bot_world/launch/gz_world.launch.xml
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/ament_index/resource_index/package_run_dependencies/bot_world
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/ament_index/resource_index/parent_prefix_path/bot_world
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/bot_world/environment/ament_prefix_path.sh
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/bot_world/environment/ament_prefix_path.dsv
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/bot_world/environment/path.sh
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/bot_world/environment/path.dsv
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/bot_world/local_setup.bash
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/bot_world/local_setup.sh
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/bot_world/local_setup.zsh
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/bot_world/local_setup.dsv
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/bot_world/package.dsv
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/ament_index/resource_index/packages/bot_world
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/bot_world/cmake/bot_worldConfig.cmake
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/bot_world/cmake/bot_worldConfig-version.cmake
+-- Symlinking: /home/nani/nanibabu_ws/install/bot_world/share/bot_world/package.xml

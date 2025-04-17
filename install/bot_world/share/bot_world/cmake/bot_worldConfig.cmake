@@ -1,0 +1,1 @@
+/home/nani/nanibabu_ws/build/bot_world/ament_cmake_core/bot_worldConfig.cmake

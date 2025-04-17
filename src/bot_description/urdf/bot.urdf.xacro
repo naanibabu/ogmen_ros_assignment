@@ -1,0 +1,309 @@
+<?xml version="1.0"?>
+<robot name="my_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Material Tags -->
+
+    <material name="blue">
+        <color rgba="0 0 0.5 1" />
+    </material>
+
+    <material name="grey">
+        <color rgba="0.5 0.5 0.5 1" />
+    </material>
+
+    <!-- Inertial tags for shapes-->
+
+    <xacro:macro name="box_inertia" params="m l w h xyz rpy">
+        <inertial>
+            <origin xyz="${xyz}" rpy="${rpy}" />
+            <mass value="${m}" />
+            <inertia ixx="${(m/12) * (h*h + l*l)}" ixy="0" ixz="0"
+                     iyy="${(m/12) * (w*w + l*l)}" iyz="0"
+                     izz="${(m/12) * (w*w + h*h)}" />
+        </inertial>
+    </xacro:macro>
+
+    <xacro:macro name="cylinder_inertia" params="m r h xyz rpy">
+        <inertial>
+            <origin xyz="${xyz}" rpy="${rpy}" />
+            <mass value="${m}" />
+            <inertia ixx="${(m/12) * (3*r*r + h*h)}" ixy="0" ixz="0"
+                     iyy="${(m/12) * (3*r*r + h*h)}" iyz="0"
+                     izz="${(m/2) * (r*r)}" />
+        </inertial>
+    </xacro:macro>
+
+    <xacro:macro name="sphere_inertia" params="m r xyz rpy">
+        <inertial>
+            <origin xyz="${xyz}" rpy="${rpy}" />
+            <mass value="${m}" />
+            <inertia ixx="${(2/5) * m * r * r}" ixy="0" ixz="0"
+                     iyy="${(2/5) * m * r * r}" iyz="0"
+                     izz="${(2/5) * m * r * r}" />
+        </inertial>
+    </xacro:macro>
+
+    <!--LINKS-->
+
+    <link name="base_footprint" />
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="0.2 0.2 0.1" />
+            </geometry>
+            <origin xyz="0 0 0.05" rpy="0 0 0" />
+            <material name="blue" />
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.2 0.2 0.1" />
+            </geometry>
+            <origin xyz="0 0 0.05" rpy="0 0 0" />
+          
+        </collision>
+        <xacro:box_inertia m="2.5" l="0.2" w="0.2" h="0.1"
+                           xyz="0 0 0.05" rpy="0 0 0" />
+        
+    </link>
+
+    <link name="right_wheel_link">
+        <visual>
+            <geometry>
+                <cylinder radius="0.06" length="0.02" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0" />
+            <material name="grey" />
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.06" length="0.02" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0" />
+           
+        </collision>
+        <xacro:cylinder_inertia m="0.5" r="0.06" h="0.02" 
+                                    xyz="0 0 0.035" rpy="1.57 0 0" />
+    </link>
+
+    <link name="left_wheel_link">
+        <visual>
+            <geometry>
+                <cylinder radius="0.06" length="0.02" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0" />
+            <material name="grey" />
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.06" length="0.02" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0" />
+            
+            
+        </collision>
+        <xacro:cylinder_inertia m="0.5" r="0.06" h="0.02" 
+                                    xyz="0 0 0.035" rpy="1.57 0 0" />
+    </link>
+
+    <link name="caster_wheel_link">
+        <visual>
+            <geometry>
+                <sphere radius="0.021" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="grey" />
+        </visual>
+        <collision>
+            <geometry>
+                <sphere radius="0.021" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+          
+        </collision>
+        <xacro:sphere_inertia m="0.25" r="0.021"
+                              xyz="0 0 0" rpy="0 0 0" />
+    </link>
+
+    <link name="camera_link">
+        <visual>
+            <geometry>
+               <box size="0.01 0.03 0.03"/>
+            </geometry>
+            <material name="grey"/>
+        </visual>
+        <collision>
+            <geometry>
+               <box size="0.01 0.03 0.03"/>
+            </geometry>
+        </collision>
+        
+        <xacro:box_inertia m="0.1" l="0.01" w="0.03" h="0.03"
+                           xyz="0 0 0" rpy="0 0 0" />
+
+    </link>
+
+    <link name="lidar_link">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.04"/>
+            </geometry>
+            <material name="grey"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.04"/>
+            </geometry>
+        </collision>
+        
+        <xacro:cylinder_inertia m="0.2" r="0.03" h="0.04" 
+                                    xyz="0 0 0" rpy="0 0 0" />
+        
+    </link>
+
+    <!--Joints-->
+
+    <joint name="base_joint" type="fixed">
+        <parent link="base_footprint" />
+        <child link="base_link" />
+        <origin xyz="0 0 0.02" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="base_right_wheel_joint" type="continuous">
+        <parent link="base_link" />
+        <child link="right_wheel_link" />
+        <origin xyz="-0.035 -0.11 0.04" rpy="0 0 0" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+    <joint name="base_left_wheel_joint" type="continuous">
+        <parent link="base_link" />
+        <child link="left_wheel_link" />
+        <origin xyz="-0.035 0.11 0.04" rpy="0 0 0" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+    <joint name="base_caster_wheel_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="caster_wheel_link" />
+        <origin xyz="0.061 0 0.001" rpy="0 0 0" />
+    </joint>
+
+    <joint name="base_camera_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="camera_link" />
+        <origin xyz="0.105 0 0.07" rpy="0 0 0" />
+    </joint>
+
+    <joint name="base_lidar_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="lidar_link" />
+        <origin xyz="0 0 0.12" rpy="0 0 0" />
+    </joint>
+
+
+    <!--gazebo tags-->
+
+    <gazebo reference="caster_wheel_link">
+        <mu1 value="0.1" />
+        <mu2 value="0.1" />
+    </gazebo>
+
+    <!--plugins-->
+
+    <gazebo>
+        <plugin
+            filename="gz-sim-diff-drive-system"
+            name="gz::sim::systems::DiffDrive">
+            <left_joint>base_left_wheel_joint</left_joint>
+            <right_joint>base_right_wheel_joint</right_joint>
+            <frame_id>odom</frame_id>
+            <child_frame_id>base_footprint</child_frame_id>
+            <wheel_separation>0.22</wheel_separation>
+            <wheel_radius>0.06</wheel_radius>
+        </plugin>
+    </gazebo>
+
+    <gazebo>
+        <plugin
+            filename="gz-sim-joint-state-publisher-system"
+            name="gz::sim::systems::JointStatePublisher">
+            <joint_name>base_left_wheel_joint</joint_name>
+            <joint_name>base_right_wheel_joint</joint_name>
+        </plugin>
+    </gazebo>
+
+    <gazebo>
+        <plugin 
+            filename="ignition-gazebo-sensors-system"
+            name="ignition::gazebo::systems::Sensors">
+            <render_engine>ogre2</render_engine>
+        </plugin>
+    </gazebo>
+
+    <!--gazebo sensors-->
+
+    <!--LiDAR-->
+    
+    <gazebo reference="lidar_link">
+        <sensor name="lidar_link" type="gpu_ray">
+           
+            <visualize>true</visualize>
+            <always_on>true</always_on>
+            <update_rate>1</update_rate>
+            <gazebo_frame_id>lidar_link</gazebo_frame_id>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>360</samples>
+                        <resolution>1</resolution>
+                        <min_angle>0</min_angle>
+                        <max_angle>6.28</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.3</min>
+                    <max>12.0</max>
+                    <resolution>0.01</resolution>
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.01</stddev>
+                </noise>
+            </ray>
+            <topic>/scan</topic>
+        </sensor>
+    </gazebo>
+
+    <!--camera-->
+
+    <gazebo reference="camera_link">
+        <sensor name="camera" type="camera">
+            <camera>
+                <horizontal_fov>1.3962634</horizontal_fov>
+                <image>
+                    <width>640</width>
+                    <height>480</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.1</near>
+                    <far>15</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.007</stddev>
+                </noise>
+                <optical_frame_id>camera_link</optical_frame_id>
+                <camera_info_topic>camera/camera_info</camera_info_topic>
+            </camera>
+            <always_on>1</always_on>
+            <update_rate>20</update_rate>
+            <visualize>true</visualize>
+            <topic>camera/image_raw</topic>            
+        </sensor>
+    </gazebo>
+
+</robot>
