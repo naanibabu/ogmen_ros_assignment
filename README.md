@@ -18,6 +18,11 @@ Make sure you’ve sourced ROS 2 and you're inside your workspace:
 cd ~/nanibabu_ws
 colcon build --packages-select bot_description
 source install/setup.bash ```
-### 2. To Display bot in Rviz
+ ### 2.To launch bot in RViz
 ```bash
-ros2 launch bot_description display.launch.xml ``
+ros2 launch bot_description display.launch.xml ```
+### 3. To spawn bot in Gazebo Ignition
+```bash
+ros2 launch bot_descrition spawn.launch.xml```
+
+
