@@ -17,5 +17,7 @@ Make sure you’ve sourced ROS 2 and you're inside your workspace:
 ```bash
 cd ~/nanibabu_ws
 colcon build --packages-select bot_description
-source install/setup.bash
-ros2 launch bot_description spawn.launch.xml
+source install/setup.bash ```
+### 2. To Display bot in Rviz
+```bash
+ros2 launch bot_description display.launch.xml ``
