@@ -29,5 +29,38 @@ ros2 launch bot_description display.launch.xml
 ```bash
 ros2 launch bot_descrition spawn.launch.xml
 ```
+### 4. To control bot using keyboard
+```bash
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```
+
+---
+
+### 📁 `bot_world
+
+
+# 🌍 bot_world
+
+This package contains custom Gazebo world files and launch scripts to spawn your robot in those environments.
+
+## 🧩 Package Contents
+
+- `worlds/` – Custom `.sdf` or `.world` Gazebo files where your robot can be tested.
+- `launch/` – Launch files to load a specific world and spawn the robot inside it.
+
+## 🚀 How to Use
+
+### 1. Build the package
+
+```bash
+cd ~/nanibabu_ws
+colcon build --packages-select bot_world
+source install/setup.bash
+```
+### 2. Spawn bot in our world in Gazebo
+```bash
+ros2 launch bot_world gz_world.launch.xml
+
+
 
 
