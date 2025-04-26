@@ -1,1 +1,0 @@
-/home/nani/nanibabu_ws/build/bot_control/ament_cmake_core/bot_controlConfig-version.cmake

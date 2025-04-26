@@ -1,1 +1,0 @@
-/home/nani/nanibabu_ws/build/bot_description/ament_cmake_environment_hooks/local_setup.bash
