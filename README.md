@@ -10,9 +10,9 @@ This package contains the robot's URDF/XACRO description and launch files for sp
   - Teleoperate the robot using keyboard input (`teleop_twist_keyboard`).
 
 ## How to Use
-### 1. create the workspace
-create a workspace folder name it as 'nanibabu_ws'
-copy 'src' folder from downloaded code inside 'nanibabu_ws'
+### 1. Create workspace
+- create a workspace folder name it as 'nanibabu_ws'
+- copy 'src' folder from downloaded code inside 'nanibabu_ws'
 
 ### 2. Build the workspace
 Make sure you’ve sourced ROS 2 and you're inside your workspace:
