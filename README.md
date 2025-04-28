@@ -10,8 +10,11 @@ This package contains the robot's URDF/XACRO description and launch files for sp
   - Teleoperate the robot using keyboard input (`teleop_twist_keyboard`).
 
 ## How to Use
+### 1. create the workspace
+create a workspace folder name it as 'nanibabu_ws'
+copy 'src' folder from downloaded code inside 'nanibabu_ws'
 
-### 1. Build the workspace
+### 2. Build the workspace
 Make sure you’ve sourced ROS 2 and you're inside your workspace:
 
 ```bash
@@ -19,17 +22,17 @@ cd ~/nanibabu_ws
 colcon build --packages-select bot_description
 source install/setup.bash
 ```
- ### 2.To launch bot in RViz
+ ### 3.To launch bot in RViz
 
 ```bash
 ros2 launch bot_description display.launch.xml
 ```
-### 3. To spawn bot in Gazebo Ignition
+### 4. To spawn bot in Gazebo Ignition
 
 ```bash
 ros2 launch bot_descrition spawn.launch.xml
 ```
-### 4. To control bot using keyboard
+### 5. To control bot using keyboard
 ```bash
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
